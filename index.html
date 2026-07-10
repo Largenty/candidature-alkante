@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludovic Argenty — Candidature Alkante</title>
+<meta name="description" content="Candidature de Ludovic Argenty, développeur full-stack, pour le poste de développeur web chez Alkante.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,75..100,400..900;1,75..100,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEF3F1;
+  --paper-deep:#E2EBE8;
+  --ink:#10333A;
+  --ink-soft:#3D5A60;
+  --contour:#BAD3CD;
+  --contour-soft:#CFE0DB;
+  --sea:#14628C;
+  --sea-deep:#0E4A6B;
+  --balise:#D4562A;
+  --grid:rgba(16,51,58,.06);
+  --hair:rgba(16,51,58,.18);
+  --radius:2px;
+  --display:"Archivo",sans-serif;
+  --body:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+body{
+  font-family:var(--body);
+  font-size:1.0625rem;
+  line-height:1.65;
+  color:var(--ink);
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:72px 72px;
+}
+::selection{background:var(--sea);color:var(--paper)}
+a{color:var(--sea)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--balise);outline-offset:3px}
+
+/* ---------- Rail GPX (desktop) ---------- */
+.rail{
+  position:fixed;left:34px;top:0;bottom:0;width:2px;
+  background:var(--hair);z-index:50;
+}
+.rail-fill{
+  position:absolute;top:0;left:0;width:100%;height:0;
+  background:var(--sea);transition:height .12s linear;
+}
+.wp{
+  position:absolute;left:50%;transform:translate(-50%,-50%) rotate(45deg);
+  width:9px;height:9px;background:var(--paper);
+  border:2px solid var(--ink-soft);
+  transition:background .25s,border-color .25s;
+}
+.wp.reached{background:var(--sea);border-color:var(--sea)}
+.wp-label{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%) rotate(-45deg);
+  transform-origin:left center;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;
+  color:var(--ink-soft);white-space:nowrap;opacity:0;transition:opacity .25s;
+  pointer-events:none;
+}
+.wp.reached .wp-label{opacity:1}
+@media(max-width:900px){.rail{display:none}}
+
+/* ---------- Structure ---------- */
+.wrap{max-width:880px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+section{padding:clamp(4.5rem,10vh,8rem) 0;position:relative}
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--sea);
+  display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--hair)}
+h2{
+  font-family:var(--display);
+  font-weight:800;font-stretch:82%;
+  font-size:clamp(1.8rem,4.5vw,2.6rem);
+  letter-spacing:.02em;text-transform:uppercase;
+  line-height:1.05;margin-bottom:1.75rem;
+}
+h2 em{
+  font-family:var(--body);font-style:italic;font-weight:500;
+  text-transform:none;letter-spacing:0;color:var(--sea);
+  font-size:.85em;
+}
+p+p{margin-top:1rem}
+.lede{font-size:clamp(1.1rem,2.2vw,1.3rem);line-height:1.55}
+
+/* Révélation au scroll */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- Hero ---------- */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;padding-top:3rem;
+}
+.topo{
+  position:absolute;inset:-10% -20%;z-index:-1;opacity:.85;
+  pointer-events:none;
+}
+.topo path{fill:none;stroke:var(--contour);stroke-width:1.5}
+.topo .deep{stroke:var(--contour-soft)}
+.hero-coords{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;
+  color:var(--ink-soft);margin-bottom:1.25rem;text-transform:uppercase;
+  display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;
+}
+.pin{
+  width:10px;height:10px;border-radius:50%;background:var(--balise);
+  position:relative;flex:none;
+}
+.pin::after{
+  content:"";position:absolute;inset:-6px;border-radius:50%;
+  border:1.5px solid var(--balise);opacity:0;
+  animation:ping 2.4s ease-out infinite;
+}
+@keyframes ping{0%{transform:scale(.4);opacity:.9}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+h1{
+  font-family:var(--display);
+  font-weight:900;font-stretch:78%;
+  font-size:clamp(2.9rem,9.5vw,6.2rem);
+  line-height:.95;letter-spacing:.015em;text-transform:uppercase;
+}
+h1 .thin{display:block;font-weight:500;font-stretch:100%;font-size:.36em;letter-spacing:.28em;color:var(--ink-soft);margin-top:.9rem}
+.hero-sub{
+  margin-top:2.25rem;max-width:34em;
+  font-size:clamp(1.1rem,2.3vw,1.35rem);
+}
+.hero-sub em{font-style:italic;color:var(--sea)}
+.hero-cta{margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.85rem 1.4rem;border:1.5px solid var(--ink);border-radius:var(--radius);
+  text-decoration:none;color:var(--ink);background:transparent;
+  transition:background .2s,color .2s;cursor:pointer;
+}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.primary{background:var(--sea);border-color:var(--sea);color:#fff}
+.btn.primary:hover{background:var(--sea-deep);border-color:var(--sea-deep)}
+.scroll-hint{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.2em;
+  color:var(--ink-soft);text-transform:uppercase;
+}
+
+/* ---------- Cap (pourquoi Alkante) ---------- */
+.cap-grid{display:grid;gap:2.5rem;margin-top:2.5rem}
+@media(min-width:760px){.cap-grid{grid-template-columns:1fr 1fr 1fr;gap:2rem}}
+.cap-card h3{
+  font-family:var(--display);font-weight:700;font-stretch:85%;
+  font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;
+  margin-bottom:.7rem;padding-top:.9rem;border-top:2px solid var(--ink);
+}
+.cap-card p{font-size:.98rem;color:var(--ink-soft)}
+
+/* ---------- Légende / compétences ---------- */
+.legend-key{
+  font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);
+  display:flex;gap:1.75rem;flex-wrap:wrap;margin-bottom:2rem;
+  padding:.9rem 1rem;border:1px dashed var(--hair);border-radius:var(--radius);
+  background:rgba(255,255,255,.35);
+}
+.sym{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin-right:.5rem}
+.sym.full{background:var(--sea)}
+.sym.half{background:linear-gradient(90deg,var(--sea) 50%,transparent 50%);border:1.5px solid var(--sea)}
+.skill-row{
+  display:grid;grid-template-columns:26px 1fr;gap:0 1.1rem;
+  padding:1.4rem 0;border-bottom:1px solid var(--hair);
+  transition:background .2s;
+}
+.skill-row:first-of-type{border-top:1px solid var(--hair)}
+.skill-row:hover{background:rgba(255,255,255,.45)}
+.skill-row .sym{margin:.45rem 0 0;width:13px;height:13px}
+.skill-req{
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:.35rem;
+}
+.skill-req strong{color:var(--ink);font-weight:500}
+.skill-note{font-size:1rem}
+@media(min-width:760px){
+  .skill-row{grid-template-columns:26px 240px 1fr;align-items:start}
+  .skill-req{margin-bottom:0;padding-top:.15rem}
+}
+
+/* ---------- Journal de bord ---------- */
+.log{display:grid;gap:1.5rem;margin-top:2.5rem}
+@media(min-width:760px){.log{grid-template-columns:1fr 1fr}}
+.log-entry{
+  border:1.5px solid var(--ink);border-radius:var(--radius);
+  padding:1.5rem 1.5rem 1.4rem;background:rgba(255,255,255,.5);
+  position:relative;transition:transform .2s,box-shadow .2s;
+}
+.log-entry:hover{transform:translateY(-3px);box-shadow:4px 4px 0 var(--contour)}
+.log-tag{
+  position:absolute;top:-0.7rem;left:1.1rem;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);padding:.25rem .55rem;border-radius:var(--radius);
+}
+.log-entry h3{
+  font-family:var(--display);font-weight:800;font-stretch:82%;
+  font-size:1.35rem;text-transform:uppercase;letter-spacing:.03em;
+  margin:.4rem 0 .3rem;
+}
+.log-stack{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--sea);margin-bottom:.75rem}
+.log-entry p{font-size:.95rem;color:var(--ink-soft)}
+
+/* ---------- Contact ---------- */
+.contact{
+  border-top:2px solid var(--ink);
+}
+.contact .lede{max-width:36em}
+.contact-note{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;
+  color:var(--ink-soft);margin-top:2.5rem;
+}
+footer{
+  padding:2.5rem 0 3rem;font-family:var(--mono);
+  font-size:.68rem;letter-spacing:.08em;color:var(--ink-soft);
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  border-top:1px solid var(--hair);
+}
+</style>
+</head>
+<body>
+
+<!-- Rail GPX : la trace se dessine au fil du scroll -->
+<nav class="rail" aria-hidden="true">
+  <div class="rail-fill" id="railFill"></div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="depart">
+  <svg class="topo" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="deep" d="M-50,620 C150,540 260,660 460,590 C660,520 700,640 920,570 C1080,520 1160,600 1300,540"/>
+    <path class="deep" d="M-50,680 C180,610 300,720 500,650 C700,580 760,700 960,630 C1110,580 1180,660 1300,610"/>
+    <path d="M180,240 C260,170 420,180 480,260 C540,340 460,430 350,420 C240,410 110,310 180,240 Z"/>
+    <path d="M210,255 C280,200 400,210 450,275 C500,340 435,400 350,392 C265,384 155,300 210,255 Z"/>
+    <path d="M245,272 C295,232 375,240 412,288 C449,336 405,372 348,366 C291,360 205,304 245,272 Z"/>
+    <path d="M760,120 C880,60 1050,90 1090,190 C1130,290 1030,380 900,360 C770,340 650,180 760,120 Z"/>
+    <path d="M790,145 C885,100 1015,125 1048,205 C1081,285 1000,352 898,336 C796,320 705,185 790,145 Z"/>
+    <path d="M822,172 C892,140 985,160 1008,218 C1031,276 972,323 897,311 C822,299 758,201 822,172 Z"/>
+    <path d="M850,196 C900,174 962,190 978,228 C994,266 952,296 899,288 C846,280 804,216 850,196 Z"/>
+    <path class="deep" d="M-50,80 C120,140 300,60 480,110 C660,160 800,70 1000,120 C1150,158 1250,90 1320,120"/>
+  </svg>
+
+  <div class="wrap">
+    <p class="hero-coords">
+      <span class="pin" aria-hidden="true"></span>
+      <span>44.190° N — 4.843° E · Sérignan-du-Comtat (84)</span>
+    </p>
+    <h1>
+      Ludovic<br>Argenty
+      <span class="thin">Développeur full-stack &amp; formateur web</span>
+    </h1>
+    <p class="hero-sub lede">
+      Un développeur qui postule chez un spécialiste de la géomatique se devait
+      d'arriver avec une carte. Cette page en est une&nbsp;: <em>elle trace la route
+      entre mon parcours et le poste que vous ouvrez.</em>
+    </p>
+    <div class="hero-cta">
+      <a class="btn primary" href="#contact">Établir la liaison</a>
+      <a class="btn" href="#releve">Voir le relevé de compétences</a>
+    </div>
+  </div>
+  <p class="scroll-hint">▼ Suivre la trace</p>
+</header>
+
+<main>
+<!-- ================= LE CAP ================= -->
+<section id="cap">
+  <div class="wrap">
+    <p class="eyebrow reveal">Étape 01 — Le cap · 48.135° N, 1.535° O</p>
+    <h2 class="reveal">Pourquoi mettre le cap sur <em>Alkante</em></h2>
+    <p class="lede reveal">
+      Le web que je préfère est celui qui sert à quelque chose de tangible.
+      Vos projets manipulent le territoire, l'environnement, l'espace public&nbsp;:
+      des données qui décrivent le réel, et des outils que des gens utilisent vraiment.
+    </p>
+    <div class="cap-grid">
+      <article class="cap-card reveal">
+        <h3>La géomatique</h3>
+        <p>Croiser du code et des données spatiales, c'est donner une forme visible
+        à des enjeux concrets. C'est exactement le type de défi technique qui me fait
+        ouvrir mon éditeur le matin avec envie.</p>
+      </article>
+      <article class="cap-card reveal">
+        <h3>La diversité des projets</h3>
+        <p>Des ministères aux grands groupes, du SI au mobile&nbsp;: une équipe de 60 personnes
+        qui couvre ce spectre, c'est la garantie de ne jamais s'installer dans une
+        routine — et de progresser en continu.</p>
+      </article>
+      <article class="cap-card reveal">
+        <h3>La culture d'équipe</h3>
+        <p>Autonomie, organisation peu hiérarchique, équilibre vie pro / vie perso&nbsp;:
+        c'est le cadre dans lequel je travaille déjà en indépendant. Ce qui me manque,
+        c'est une équipe avec qui le partager dans la durée.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RELEVÉ DE COMPÉTENCES ================= -->
+<section id="releve">
+  <div class="wrap">
+    <p class="eyebrow reveal">Étape 02 — Le relevé</p>
+    <h2 class="reveal">Relevé de compétences, <em>point par point</em></h2>
+    <p class="reveal">Votre annonce à gauche, mon terrain à droite. Symboles conformes à la légende.</p>
+
+    <div class="legend-key reveal" role="note">
+      <span><span class="sym full"></span>En production / au quotidien</span>
+      <span><span class="sym half"></span>Fondations solides, montée en puissance rapide</span>
+    </div>
+
+    <div class="skill-row reveal">
+      <span class="sym full" aria-label="Au quotidien"></span>
+      <p class="skill-req"><strong>Front-end</strong> · React</p>
+      <p class="skill-note">Mon outil quotidien — et ma matière d'enseignement. Je forme des
+      développeurs à React sur un cursus complet, du premier hook aux patterns avancés.
+      Enseigner une technologie oblige à la comprendre en profondeur.</p>
+    </div>
+
+    <div class="skill-row reveal">
+      <span class="sym full" aria-label="Au quotidien"></span>
+      <p class="skill-req"><strong>Back-end</strong> · Node.js, Express</p>
+      <p class="skill-note">Express en production et en salle de cours&nbsp;: API REST,
+      authentification JWT, architecture MVC, bonnes pratiques de structuration.
+      J'ai bâti des supports de formation complets sur ces sujets.</p>
+    </div>
+
+    <div class="skill-row reveal">
+      <span class="sym full" aria-label="Au quotidien"></span>
+      <p class="skill-req"><strong>Bases de données</strong> · PostgreSQL, MongoDB</p>
+      <p class="skill-note">PostgreSQL en production via Supabase et Prisma&nbsp;;
+      MongoDB et Mongoose sur mes projets back-end récents. Modélisation,
+      migrations, optimisation de requêtes&nbsp;: le quotidien d'un full-stack.</p>
+    </div>
+
+    <div class="skill-row reveal">
+      <span class="sym full" aria-label="Au quotidien"></span>
+      <p class="skill-req"><strong>Outils</strong> · Git, Docker, Jira, Figma, Postman</p>
+      <p class="skill-note">L'outillage standard de mes journées. Figma en particulier&nbsp;:
+      formé au design UX/UI, mes maquettes précèdent toujours mon code — un vrai
+      atout pour dialoguer avec les utilisateurs comme avec les designers.</p>
+    </div>
+
+    <div class="skill-row reveal">
+      <span class="sym full" aria-label="Au quotidien"></span>
+      <p class="skill-req"><strong>Qualité</strong> · Tests, CI, documentation</p>
+      <p class="skill-note">Des habitudes que je transmets à mes étudiants — donc que je
+      m'impose d'abord à moi-même. Revue de code, documentation claire, amélioration
+      continue&nbsp;: la pédagogie rend rigoureux.</p>
+    </div>
+
+    <div class="skill-row reveal">
+      <span class="sym half" aria-label="Fondations solides"></span>
+      <p class="skill-req"><strong>Symfony / PHP</strong></p>
+      <p class="skill-note">Parlons franchement&nbsp;: mon quotidien est côté JavaScript.
+      Mais MVC, ORM, injection de dépendances, POO, API REST — les fondations sur
+      lesquelles Symfony est construit sont précisément celles que je pratique et
+      que j'enseigne. Un framework s'apprend en quelques semaines&nbsp;;
+      l'architecture, elle, est déjà là.</p>
+    </div>
+
+    <div class="skill-row reveal">
+      <span class="sym full" aria-label="Au quotidien"></span>
+      <p class="skill-req"><strong>Pédagogie</strong> · Relationnel</p>
+      <p class="skill-note">Formateur web en poste&nbsp;: vulgariser, documenter, accompagner
+      des débutants comme des utilisateurs finaux, c'est littéralement mon métier.
+      «&nbsp;Aisance relationnelle et pédagogie&nbsp;» n'est pas une ligne de CV,
+      c'est ma fiche de poste actuelle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOURNAL DE BORD ================= -->
+<section id="journal">
+  <div class="wrap">
+    <p class="eyebrow reveal">Étape 03 — Le journal de bord</p>
+    <h2 class="reveal">Quelques traces <em>relevées sur le terrain</em></h2>
+    <p class="reveal">Des projets menés de bout en bout — conception, développement, déploiement, maintenance.</p>
+
+    <div class="log">
+      <article class="log-entry reveal">
+        <span class="log-tag">Full-stack · Production</span>
+        <h3>Fetchme.tv</h3>
+        <p class="log-stack">Next.js · Prisma · PostgreSQL · APIs externes</p>
+        <p>Agrégateur communautaire de vidéos de jeu de cartes&nbsp;: intégration
+        d'APIs tierces, score de tendance maison, authentification OAuth,
+        e-mails transactionnels. Conçu, développé, déployé et maintenu seul,
+        de la maquette au monitoring.</p>
+      </article>
+
+      <article class="log-entry reveal">
+        <span class="log-tag">Mobile</span>
+        <h3>DuelLog</h3>
+        <p class="log-stack">React · Vite · Capacitor</p>
+        <p>Application mobile de suivi de parties et de tournois, pensée pour être
+        utilisée d'une main, en conditions réelles. Un exercice complet de design
+        d'interface sous contrainte forte d'usage.</p>
+      </article>
+
+      <article class="log-entry reveal">
+        <span class="log-tag">Formation</span>
+        <h3>O'clock</h3>
+        <p class="log-stack">JavaScript · React · Node.js · Express</p>
+        <p>Formateur sur un cursus intensif de développement web&nbsp;: cours en direct,
+        supports pédagogiques, exercices et corrections. Transmettre force à
+        structurer sa pensée — et à écrire du code exemplaire.</p>
+      </article>
+
+      <article class="log-entry reveal">
+        <span class="log-tag">Freelance · UX/UI</span>
+        <h3>L'Atelier du Comtat</h3>
+        <p class="log-stack">Figma · HTML/CSS/JS · Accessibilité</p>
+        <p>Sites sur-mesure pour des clients locaux — restauration, services,
+        portfolio. De l'entretien de découverte à la mise en ligne&nbsp;:
+        la relation client en direct, du brief à la livraison.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="eyebrow reveal">Étape 04 — Destination · Noyal-sur-Vilaine (35)</p>
+    <h2 class="reveal">Établir <em>la liaison</em></h2>
+    <p class="lede reveal">
+      Cette page a été conçue et développée à la main pour cette candidature —
+      HTML, CSS et JavaScript, sans framework. Si la démarche vous parle autant
+      que le profil, parlons-en de vive voix.
+    </p>
+    <div class="hero-cta reveal">
+      <!-- TODO Ludo : remplacer par ton adresse e-mail réelle -->
+      <a class="btn primary" href="mailto:VOTRE-EMAIL@exemple.fr?subject=Candidature%20d%C3%A9veloppeur%20web%20—%20Ludovic%20Argenty">M'écrire</a>
+      <!-- TODO Ludo : remplacer par l'URL de ton profil LinkedIn -->
+      <a class="btn" href="#" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://ludovicargenty.com" target="_blank" rel="noopener">Portfolio — ludovicargenty.com</a>
+      <a class="btn" href="https://atelier-du-comtat.com" target="_blank" rel="noopener">Prestations — atelier-du-comtat.com</a>
+    </div>
+    <p class="contact-note reveal">Page préparée à l'attention d'Ann-Lyse Launay et de l'équipe Alkante.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;width:100%">
+    <span>© 2026 Ludovic Argenty</span>
+    <span>Trace&nbsp;: 44.190°N, 4.843°E → 48.135°N, 1.535°O</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- Rail GPX : remplissage + waypoints --- */
+  const rail = document.querySelector('.rail');
+  const fill = document.getElementById('railFill');
+  const sections = [
+    {id:'depart',  label:'00 DÉPART'},
+    {id:'cap',     label:'01 CAP'},
+    {id:'releve',  label:'02 RELEVÉ'},
+    {id:'journal', label:'03 JOURNAL'},
+    {id:'contact', label:'04 LIAISON'}
+  ];
+  const wps = [];
+
+  function placeWaypoints(){
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    sections.forEach((s,i)=>{
+      const el = document.getElementById(s.id);
+      if(!el) return;
+      const ratio = docH > 0 ? Math.min(el.offsetTop / docH, 1) : 0;
+      let wp = wps[i];
+      if(!wp){
+        wp = document.createElement('div');
+        wp.className = 'wp';
+        wp.innerHTML = '<span class="wp-label">'+s.label+'</span>';
+        rail.appendChild(wp);
+        wps[i] = wp;
+      }
+      wp.style.top = (ratio*100)+'%';
+      wp.dataset.ratio = ratio;
+    });
+  }
+
+  function onScroll(){
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const p = docH > 0 ? window.scrollY / docH : 0;
+    fill.style.height = (p*100)+'%';
+    wps.forEach(wp=>{
+      wp.classList.toggle('reached', p >= parseFloat(wp.dataset.ratio) - 0.001);
+    });
+  }
+
+  placeWaypoints();
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', ()=>{ placeWaypoints(); onScroll(); });
+
+  /* --- Révélation des blocs au scroll --- */
+  const targets = document.querySelectorAll('.reveal');
+  if(prefersReduced || !('IntersectionObserver' in window)){
+    targets.forEach(t=>t.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    targets.forEach(t=>io.observe(t));
+  }
+})();
+</script>
+</body>
+</html>
